@@ -1,6 +1,6 @@
 ---
-title: "Sample Report - Data Science Capstone"
-author: "Student name"
+title: "K-Means Clustering - Data Science Capstone"
+author: "Siva Gopavarapu"
 date: '`r Sys.Date()`'
 format:
   html:
