@@ -17,89 +17,195 @@ editor:
     wrap: 72
 ---
 
-## Introduction
+## Week 2
 
-### What is "mehtod"?
+Summary - Paper 1
 
-This is an introduction to Kernel regression, which is a non-parametric
-estimator that estimates the conditional expectation of two variables
-which is random. The goal of a kernel regression is to discover the
-non-linear relationship between two random variables. To discover the
-non-linear relationship, kernel estimator or kernel smoothing is the
-main method to estimate the curve for non-parametric statistics. In
-kernel estimator, weight function is known as kernel function
-[@efr2008]. Cite this paper [@bro2014principal]. The GEE [@wang2014].
+Clustering is a technique which helps us to group data by calculating
+the similarity between them and is used widely in the field of machine
+learning. There are many techniques in clustering and we’re going to
+concentrate on K-Means here.
 
-This is my work and I want to add more work...
+K-Means is an unsupervised machine learning algorithm. It categorizes
+data based on the distance between the points.  The process starts with
+taking a K value (centroid point) to divide the data into K categories,
+data points are assigned to each category by calculating and comparing
+the distance between each K and the data point. Distance is measured
+using the Euclidean method.
 
-### Related work
+A data point is assigned to cluster where the Euclidean diatance is the
+least.
 
-This section is going to cover the literature review...
+The final goal here is that the distance between the datapoint and the
+centroid of that cluster is minimized. This can be achieved by the
+following steps:
 
-## Methods
+1.       Initiate the K values as per the goal.
 
-The common non-parametric regression model is
-$Y_i = m(X_i) + \varepsilon_i$, where $Y_i$ can be defined as the sum of
-the regression function value $m(x)$ for $X_i$. Here $m(x)$ is unknown
-and $\varepsilon_i$ some errors. With the help of this definition, we
-can create the estimation for local averaging i.e. $m(x)$ can be
-estimated with the product of $Y_i$ average and $X_i$ is near to $x$. In
-other words, this means that we are discovering the line through the
-data points with the help of surrounding data points. The estimation
-formula is printed below [@R-base]:
+2.       Calculate the distance of each point to these K values and
+assign them to the nearest K
 
-$$
-M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
-$$ $W_n(x)$ is the sum of weights that belongs to all real numbers.
-Weights are positive numbers and small if $X_i$ is far from $x$.
+3.       Once all the data points are assigned to a K, calculate the new
+centroid of the clusters, and calculate the distance between each point
+and the new centroid again. Now, assign the points to the nearest K.
 
-Another equation:
+4.       Perform steps 2 and 3 until the centroid value doesn’t change
+anymore.
 
-$$
-y_i = \beta_0 + \beta_1 X_1 +\varepsilon_i
-$$
+One problem which is faced here is how many K values should be
+initialized to begin with. This can be solved using Elbow method.  The
+whole idea of the Elbow method is that the sum of distance between the
+point and centroid of a group decreases as we increase the number of
+centroids(K). To find the optimal number of centroids, we need to plot a
+graph where we can visually see the elbow point i.e optimal number of K
+values where there is no significant reduction in the sum of distances
+with increase in K value. By doing this, we can identify the optimal
+number of clusters for our data set.
 
-## Analysis and Results
+[@cui2020introduction]
 
-### Data and Visualization
+Summary - Paper 2
 
-A study was conducted to determine how...
+In this paper, data of the transactions of a Logistics company from
+Middle East is analyzed using K-Means clustering to answer the question
+“How can customer segmentation from the data can be used to monetize?” 
+Before preparing the final data set to input into K-means algorithm,
+data preparation has been performed such as cleaning, merging, and
+preprocessing the data which includes standardizing the values and
+creating the new relevant variables.
 
-```{r, warning=FALSE, echo=T, message=FALSE}
-# loading packages 
-library(tidyverse)
-library(knitr)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
-```
+Tableau is used to visualize the data in the first step before running
+K-means algorithm to get better understanding of the data. Graphs are
+built to understand any visual patterns between customers, product
+categories, share of e-commerce companies in each product category, and
+the destination countries.
 
-```{r, warning=FALSE, echo=TRUE}
-# Load Data
-kable(head(murders))
+As the K value need to be initialized in the first place, experiment has
+been ran on 2 to 5 clusters to find the perfect fit of customer groups.
+Data from each K value clusters has been analyzed based on variables
+such as number of items, avg total value, product group, country of
+destination, etc. Calinski-Harabasz criterion is used to assess the
+quality of clusters, higher the value here tells us that the clusters
+are well separated. ANOVA statistic has been used to validate the best
+fit solution from Calinski-Harabasz criterion. After observing the p
+value \<0.001 of Total USD variable, it can be confirmed that the
+clusters are statistically different. Also, the two clusters in 5
+cluster solution, and one cluster in 4 cluster solution has very less
+data points which led us to choose k=3 as the best fit solution.
 
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
+Companies getting to know more about their customer groups based on the
+average order value, products mostly bought, and the location of
+delivery can benefit them to market their product effectively to the
+right set of customers leading to more business and profits.
 
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_bw()
-  
+[@qabbaah2019using]
 
-```
+## Week 3
 
-### Statistical Modeling
+Summary – Paper 1 (Cluster Application with K-Means Algorithm on the
+Population of Trade and Accommodation Facilities in Indonesia)
 
-```{r}
+Goal of the paper:
 
-```
+Goal of the paper is to categorize the regions in Indonesia into three
+clusters namely K1(high), K2(medium), K3(low) using k-means algorithm
+based on the trade (6 attributes – mini markets, restaurants, food and
+beverage shops, shops, hotels, and lodging) and accommodation facilities
+and help government identify the to pay more attention and try to
+improve the overall performance in terms of trade, accommodation, and
+other facilities. By understanding the position of each region,
+government needs to maximize the potential of each region and educate
+the importance clean water, and other basic facilities to the people.
+Data is collected from the website [www.bps.go.id](http://www.bps.go.id)
+which provides government statistical data.
 
-### Conclusion
+This research might be very important both for government and the people
+of Indonesia to improve the overall trade performance and people lives.
 
-## References
+Methodology:
+
+Data of 6 attributes for 34 provinces is collected from the
+above-mentioned link.
+
+K-Means –
+
+From the data of 6 attributes and 34 provinces, average values of the 6
+attributes (mini markets, restaurants, food and beverage shops, shops,
+hotels, lodging) in the first step to make it easier for group the data
+into clusters.
+
+Once the average value of each attribute is processed, Rapid miner
+software is used to process the data into three clusters (high, medium,
+and low)
+
+Initializing centroid values – The value for the cluster K1 is obtained
+the maximum value of a record, K2 is obtained from average value, and K3
+from lowest value of a record.
+
+After forming the initial clusters, centroids value are re-calculated
+and update the cluster until the last cluster is same as the previous
+value. Finally, each province is assigned to a cluster where 5 belong to
+high, 13 are classified as medium, and 16 are classified as low.
+
+From the results, we can see that there are many provinces in Indonesia
+which needs a lot of improvement in trade and accommodation. For better
+results, compare the results from other clustering methods.
+
+[@munawar2021cluster]
+
+Summary – Paper 2(MapReduce Design of K-Means Clustering Algorithm)
+
+Goal of the paper:
+
+Goal of the paper is to implement the K-Means clustering algorithm in a
+distributed environment using the MapReduce framework in Apache Hadoop
+ecosystem. With tremendous increase in volume of data in the recent
+days, distributed computing helps us to perform the analysis and build
+complex model much quicker and helps companies act quicker on the data
+to improve their business.
+
+As the process of clustering and K-means is already discussed in the
+paper summaries in last week, I’ll be concentrating on MapReduce and
+using K-Means in distributed computing environment in this paper
+summary.
+
+Methodology:
+
+Distributed computing – It’s a technique which helps to solve complex
+computational processing by distributing the load on multiple nodes
+within a cluster. To maintain the nodes within a cluster, Apache Hadoop
+came into picture which follows MapReduce programming paradigm. This
+framework also takes care of node failure and data backup which makes it
+flexible to run complex computational tasks. All this efficiency is
+achieved by sharing the data and computational tasks between multiple
+nodes within a cluster.
+
+MapReduce programming process starts with dividing large sets of
+datasets into chunks and then sent to multiple nodes in the cluster
+(size of each chunk depends on the number of nodes and the capacity).
+Map function outputs the data in the form of a key value pair which is
+then sent as an input to the reduce function to combine the results
+having the same key value. Both map and reduce function can be custom
+written by the programmer keeping the fundamental principles in place.
+Hadoop frame also has a job tracker and a master node to check the
+status of each node performance and the output.
+
+K-Means clustering using MapReduce – The first step is to prepare the
+data as key value pairs where key is the centroid value and value is the
+data point value. Two files are created where one contains the centroid
+values and the other contains data point values. Now, the mapper
+function is coded to calculate the distance between each key(centroid)
+and the data point value and then assign it to the key with the lowest
+distance. Once all the points are assigned to a cluster, centroid value
+is recalculated in the reduce function. A new iteration of map reduce
+will be performed again until the centroid value is not updated.
+
+Though the MapReduce framework help us in building the K-means much
+quicker with huge datasets, it definitely helps to choose the correct
+number of initial centroids to reduce the number of iterations before
+arriving at the final clusters.
+
+Reference - Anchalia, P. P., Koundinya, A. K., & Srinath, N. K. (2013,
+June). MapReduce design of K-means clustering algorithm. In 2013
+International Conference on Information Science and Applications (ICISA)
+(pp. 1-5). IEEE.
