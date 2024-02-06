@@ -209,3 +209,97 @@ Reference - Anchalia, P. P., Koundinya, A. K., & Srinath, N. K. (2013,
 June). MapReduce design of K-means clustering algorithm. In 2013
 International Conference on Information Science and Applications (ICISA)
 (pp. 1-5). IEEE.
+
+## **Week 4**
+
+Summary – Paper 1 (Extended K-Means Algorithm)
+
+Goal – As we know the K-means algorithm try to minimize the within
+cluster sum of squares distance and doesn’t take the number of elements
+in each cluster into consideration, but in certain areas such as
+logistics management, or if the user decides that minimum no of elements
+in a cluster is necessary. This can be achieved by an extended K-means
+algorithm discussed in this paper.
+
+Methodology – Extended K-means is designed based on the greedy
+algorithm. Below steps gives us the overall idea of it
+
+1 – Apply K-means algorithm on the prepared data to obtain the initial
+set of clusters
+
+2 – Sort the clusters from K-means in ascending order based on the
+number of elements in each cluster
+
+3 – Based on the predefined number of elements in each cluster, we start
+either recruiting or dropping elements from the first cluster from the
+sorted clusters.
+
+4 – If there are n elements in the cluster and we require a element,
+calculate the difference a-n, we need to recruit points from other
+cluster if it’s positive else drop the points from this cluster
+
+5 – When recruiting a-n elements, points with the shortest distance are
+chosen excluding the points already in the cluster. When dropping a-n
+elements, points whose distance is closest to center of the other
+cluster are dropped. This is a greedy approach as we’re trying to
+satisfy the minimum no of points in each cluster.
+
+6 – After step 5, the K–means algorithm is again applied on the
+remaining data points to form k-1 clusters. Repeat steps 2 to 5 till you
+reach one cluster from K-means algorithm.
+
+[@6642738]
+
+Summary Paper – 2 (Genetic K-means Algorithm for Credit Card Fraud
+Detection)
+
+Goal – With the rapid increase of internet usage and credit card
+payments, frauds associated with it also increase. Proper security
+measures need to be taken to avoid merchants needing to bear the cost of
+fraudulent transactions and pay the customers back. Between 2006 to
+2007, the US has seen an increase of 1.7 billion. To prevent these
+fraudulent transactions happening, algorithms used by companies need to
+have very less execution time with good accuracy, this paper uses
+Genetic K-Means algorithm.
+
+Methodology –
+
+Genetic Algorithm – It follows survival of the fittest rule of natural
+selection which has three steps i.e.
+
+Selection – It calculates the fitness of individuals from each
+generation.
+
+Crossover – It helps us to generate new individuals by combining the
+individuals from each generation.
+
+Mutation – It performs random modifications on the newly generated
+individuals from the crossover step.
+
+This approach makes use of fitness score and inherit good properties of
+parents when producing new generations.
+
+Proposed system to detect fraudulent transactions.
+
+Once the dataset is loaded, transaction rules such as amount spent,
+authentication used, location, and spending history, etc are applied and
+the transaction summary of all the values is computed. Now, K-Means
+clustering is applied on the critical values of each transaction which
+will form three clusters namely low, medium, and high.
+
+In the next step, genetic algorithm selects the fittest points from the
+clusters to produce new generation by performing single point crossover
+and one-bit flip mutation until the best results are found and classify
+the transaction as critical, monitorable, and ordinary.
+
+This methodology has been tested on a database with 1500 transactions
+according to certain rules such as Average daily spending, CC Usage
+Frequency, CC Usage Location, Proxy Port check, IP Address Check, Wrong
+Password Attempt Check, Authentication Type Check, CC Balance, CC
+Overdraft to calculate the percentage of critical records found.
+
+From the results, it’s observed that there’s a difference of 11 sec
+lesser when we use Generic K-means algorithm instead of Simple Genetic
+algorithm.
+
+[@chougule2015genetic]

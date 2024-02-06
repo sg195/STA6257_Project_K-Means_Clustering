@@ -3081,10 +3081,40 @@ vertical-align: -.125em;
 <p>K-Means clustering using MapReduce – The first step is to prepare the data as key value pairs where key is the centroid value and value is the data point value. Two files are created where one contains the centroid values and the other contains data point values. Now, the mapper function is coded to calculate the distance between each key(centroid) and the data point value and then assign it to the key with the lowest distance. Once all the points are assigned to a cluster, centroid value is recalculated in the reduce function. A new iteration of map reduce will be performed again until the centroid value is not updated.</p>
 <p>Though the MapReduce framework help us in building the K-means much quicker with huge datasets, it definitely helps to choose the correct number of initial centroids to reduce the number of iterations before arriving at the final clusters.</p>
 <p>Reference - Anchalia, P. P., Koundinya, A. K., &amp; Srinath, N. K. (2013, June). MapReduce design of K-means clustering algorithm. In 2013 International Conference on Information Science and Applications (ICISA) (pp. 1-5). IEEE.</p>
+</section>
+<section id="week-4" class="level2">
+<h2 class="anchored" data-anchor-id="week-4"><strong>Week 4</strong></h2>
+<p>Summary – Paper 1 (Extended K-Means Algorithm)</p>
+<p>Goal – As we know the K-means algorithm try to minimize the within cluster sum of squares distance and doesn’t take the number of elements in each cluster into consideration, but in certain areas such as logistics management, or if the user decides that minimum no of elements in a cluster is necessary. This can be achieved by an extended K-means algorithm discussed in this paper.</p>
+<p>Methodology – Extended K-means is designed based on the greedy algorithm. Below steps gives us the overall idea of it</p>
+<p>1 – Apply K-means algorithm on the prepared data to obtain the initial set of clusters</p>
+<p>2 – Sort the clusters from K-means in ascending order based on the number of elements in each cluster</p>
+<p>3 – Based on the predefined number of elements in each cluster, we start either recruiting or dropping elements from the first cluster from the sorted clusters.</p>
+<p>4 – If there are n elements in the cluster and we require a element, calculate the difference a-n, we need to recruit points from other cluster if it’s positive else drop the points from this cluster</p>
+<p>5 – When recruiting a-n elements, points with the shortest distance are chosen excluding the points already in the cluster. When dropping a-n elements, points whose distance is closest to center of the other cluster are dropped. This is a greedy approach as we’re trying to satisfy the minimum no of points in each cluster.</p>
+<p>6 – After step 5, the K–means algorithm is again applied on the remaining data points to form k-1 clusters. Repeat steps 2 to 5 till you reach one cluster from K-means algorithm.</p>
+<p><span class="citation" data-cites="6642738">(<a href="#ref-6642738" role="doc-biblioref">Yi and Moon 2013</a>)</span></p>
+<p>Summary Paper – 2 (Genetic K-means Algorithm for Credit Card Fraud Detection)</p>
+<p>Goal – With the rapid increase of internet usage and credit card payments, frauds associated with it also increase. Proper security measures need to be taken to avoid merchants needing to bear the cost of fraudulent transactions and pay the customers back. Between 2006 to 2007, the US has seen an increase of 1.7 billion. To prevent these fraudulent transactions happening, algorithms used by companies need to have very less execution time with good accuracy, this paper uses Genetic K-Means algorithm.</p>
+<p>Methodology –</p>
+<p>Genetic Algorithm – It follows survival of the fittest rule of natural selection which has three steps i.e.</p>
+<p>Selection – It calculates the fitness of individuals from each generation.</p>
+<p>Crossover – It helps us to generate new individuals by combining the individuals from each generation.</p>
+<p>Mutation – It performs random modifications on the newly generated individuals from the crossover step.</p>
+<p>This approach makes use of fitness score and inherit good properties of parents when producing new generations.</p>
+<p>Proposed system to detect fraudulent transactions.</p>
+<p>Once the dataset is loaded, transaction rules such as amount spent, authentication used, location, and spending history, etc are applied and the transaction summary of all the values is computed. Now, K-Means clustering is applied on the critical values of each transaction which will form three clusters namely low, medium, and high.</p>
+<p>In the next step, genetic algorithm selects the fittest points from the clusters to produce new generation by performing single point crossover and one-bit flip mutation until the best results are found and classify the transaction as critical, monitorable, and ordinary.</p>
+<p>This methodology has been tested on a database with 1500 transactions according to certain rules such as Average daily spending, CC Usage Frequency, CC Usage Location, Proxy Port check, IP Address Check, Wrong Password Attempt Check, Authentication Type Check, CC Balance, CC Overdraft to calculate the percentage of critical records found.</p>
+<p>From the results, it’s observed that there’s a difference of 11 sec lesser when we use Generic K-means algorithm instead of Simple Genetic algorithm.</p>
+<p><span class="citation" data-cites="chougule2015genetic">(<a href="#ref-chougule2015genetic" role="doc-biblioref">Chougule et al. 2015</a>)</span></p>
 
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-chougule2015genetic" class="csl-entry" role="listitem">
+Chougule, Pooja, AD Thakare, Prajakta Kale, Madhura Gole, and Priyanka Nanekar. 2015. <span>“Genetic k-Means Algorithm for Credit Card Fraud Detection.”</span> <em>International Journal of Computer Science and Information Technologies (IJCSIT)</em> 6 (2): 1724–27.
+</div>
 <div id="ref-cui2020introduction" class="csl-entry" role="listitem">
 Cui, Mengyao et al. 2020. <span>“Introduction to the k-Means Clustering Algorithm Based on the Elbow Method.”</span> <em>Accounting, Auditing and Finance</em> 1 (1): 5–8.
 </div>
@@ -3093,6 +3123,9 @@ Munawar, Aang, Gen Gen Gendalasari, I Made Gede Ariestova Kurniawan, D Purnomo, 
 </div>
 <div id="ref-qabbaah2019using" class="csl-entry" role="listitem">
 Qabbaah, Hamzah, George Sammour, and Koen Vanhoof. 2019. <span>“Using k-Means Clustering and Data Visualization for Monetizing Logistics Data.”</span> In <em>2019 2nd International Conference on New Trends in Computing Sciences (ICTCS)</em>, 1–6. IEEE.
+</div>
+<div id="ref-6642738" class="csl-entry" role="listitem">
+Yi, Faliu, and Inkyu Moon. 2013. <span>“Extended k-Means Algorithm.”</span> In <em>2013 5th International Conference on Intelligent Human-Machine Systems and Cybernetics</em>, 2:263–66. <a href="https://doi.org/10.1109/IHMSC.2013.210">https://doi.org/10.1109/IHMSC.2013.210</a>.
 </div>
 </div></section></div></main>
 <!-- /main column -->
